@@ -1,0 +1,58 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorForm-Card {
+  margin: 10px 10px;
+  padding: 20px;
+  background-color: #ddd6d6;
+  border-radius: 8px;
+  box-shadow: 0 10px 70px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Adjust as needed */
+}
+
+.colorForm-Card form {
+  width: 100%;
+}
+
+.colorForm-Card label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.colorForm-Card input[type="text"],
+.colorForm-Card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.colorForm-Card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.colorForm-Card button:hover {
+  background-color: #021b36;
+}
+
+.colorForm-Card button:active {
+  background-color: #024184;
+  transform: translateY(1px);
+}
+
+.colorForm-Card button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Example of focus style */
+}

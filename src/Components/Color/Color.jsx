@@ -15,3 +15,5 @@ export default function Color({ color }) {
     </div>
   );
 }
+
+// ❗️Fungsi color di sini menampilkan bagaimana color ditampilkan dalam sebuah div
