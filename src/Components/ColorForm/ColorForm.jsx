@@ -2,17 +2,17 @@ import ColorInput from "../ColorInput/ColorInput.jsx";
 import "./ColorForm.css";
 
 const initialData = {
-  role: "",
-  hex: "",
-  contrastText: "",
+  role: "Name your favourite color 🎨",
+  hex: "#123456",
+  contrastText: "#ffffff",
 };
 
 export default function ColorForm({ onSubmitColor }) {
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target); // Mengumpulkan form data, jika user submit form
-    const data = Object.fromEntries(formData); // Konversi FormData Menjadi Objek JavaScript
-    onSubmitColor(data); // Fungsi yang mengirimkan data dari form ke suatu tempat
+    const formData = new FormData(event.target); //Collect form data, if the user submits the form
+    const data = Object.fromEntries(formData); // Convert FormData Into JavaScript Objects
+    onSubmitColor(data);
   }
 
   return (
@@ -25,19 +25,14 @@ export default function ColorForm({ onSubmitColor }) {
             type="text"
             id="role"
             name="role"
-            defaultValue={initialData.role} // atribut defaultValue digunakan utk mengatur nilai awal dari input
-            placeholder="Name your favourite color 🎨"
+            defaultValue={initialData.role}
           />
         </label>
         <br />
         <label htmlFor="hex">
           Hex
           <br />
-          <ColorInput
-            id="hex"
-            defaultValue={initialData.hex}
-            placeholder="Please select Hex Color 🪄"
-          />
+          <ColorInput id="hex" defaultValue={initialData.hex} />
         </label>
         <br />
         <label htmlFor="contrastText">
@@ -46,7 +41,6 @@ export default function ColorForm({ onSubmitColor }) {
           <ColorInput
             id="contrastText"
             defaultValue={initialData.contrastText}
-            placeholder="Please select Text Color 🔤"
           />
         </label>
         <br />

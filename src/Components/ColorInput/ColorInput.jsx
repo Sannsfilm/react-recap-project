@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-export default function ColorInput({ id, defaultValue, placeholder }) {
-  const [inputValue, setInputValue] = useState(defaultValue); // nilai ini diatur sesuai dengan nilai default yang diteruskan melalui properti defaultValue
+export default function ColorInput({ id, defaultValue }) {
+  const [inputValue, setInputValue] = useState(defaultValue);
 
   function handleInputValue(event) {
-    setInputValue(event.target.value); // fungsi untuk menangani perubahan nilai dalam input
+    // function to handle value changes in input
+    setInputValue(event.target.value);
   }
 
   return (
     <>
       <input
         type="text"
-        id={id} // id di sini memberikan identitas unik untuk elemen input ini
+        id={id}
         name={id}
-        value={inputValue} // nilai state yang akan digunakan oleh input
-        onChange={handleInputValue} // Properti onChange diatur sebagai fungsi handleInputValue
-        placeholder={placeholder}
+        value={inputValue}
+        onChange={handleInputValue}
       />
       <input type="color" value={inputValue} onChange={handleInputValue} />
     </>
