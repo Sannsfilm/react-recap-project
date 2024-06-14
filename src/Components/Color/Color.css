@@ -16,3 +16,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.color-card-highlight {
+  font-weight: bold;
+  color: rgb(236, 120, 120);
+}
