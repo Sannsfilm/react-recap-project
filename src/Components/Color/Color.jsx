@@ -32,14 +32,18 @@ export default function Color({ color, onDeleteColor }) {
         color: color.contrastText,
       }}
     >
-      <h3 className="color-card-headline">{color.hex}</h3>
+      <h3 className="color-card-highlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {isConfirming ? ( // if true
         <>
           <p className="color-card-highlight">Really delete?</p>
-          <button onClick={cancelDelete}>CANCEL</button>
-          <button onClick={confirmDelete}>DELETE</button>
+          <button className="color-question-name" onClick={cancelDelete}>
+            CANCEL
+          </button>
+          <button className="color-question-name" onClick={confirmDelete}>
+            DELETE
+          </button>
         </>
       ) : (
         // if false
