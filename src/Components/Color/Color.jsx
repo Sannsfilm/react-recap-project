@@ -4,25 +4,13 @@ import "./Color.css";
 export default function Color({ color, onDeleteColor }) {
   const [isConfirming, setIsConfirming] = useState(false);
 
-  // set the user still in state doesn't confirm anything
-
-  function handleDelete() {
-    setIsConfirming(true);
+  function toggleDelete() {
+    setIsConfirming(!isConfirming);
   }
-
-  // start confirming so it is true
-
-  function cancelDelete() {
-    setIsConfirming(false);
-  }
-
-  // the same state like first time
 
   function confirmDelete() {
     onDeleteColor(color.id);
   }
-
-  // call function onDeleteColor to delete
 
   return (
     <div
@@ -35,19 +23,22 @@ export default function Color({ color, onDeleteColor }) {
       <h3 className="color-card-highlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {isConfirming ? ( // if true
+      {/* if false */}
+
+      {!isConfirming && <button onClick={toggleDelete}>DELETE</button>}
+
+      {/* if true */}
+
+      {isConfirming && (
         <>
           <p className="color-card-highlight">Really delete?</p>
-          <button className="color-question-name" onClick={cancelDelete}>
+          <button className="color-question-name" onClick={toggleDelete}>
             CANCEL
           </button>
           <button className="color-question-name" onClick={confirmDelete}>
             DELETE
           </button>
         </>
-      ) : (
-        // if false
-        <button onClick={handleDelete}>DELETE</button>
       )}
     </div>
   );
