@@ -7,44 +7,51 @@ const initialData = {
   contrastText: "#ffffff",
 };
 
-export default function ColorForm({ onSubmitColor }) {
+export default function ColorForm({
+  onSubmitColor,
+  color = initialData,
+  onSave,
+  onCancel,
+  buttonText = "Add Color",
+}) {
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target); //Collect form data, if the user submits the form
-    const data = Object.fromEntries(formData); // Convert FormData Into JavaScript Objects
-    onSubmitColor(data);
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    if (onSubmitColor) {
+      onSubmitColor(data);
+    } else if (onSave) {
+      onSave(data);
+    }
   }
 
   return (
-    <div className="form-container ">
+    <div className="form-container">
       <form className="colorForm-Card" onSubmit={handleSubmit}>
         <label htmlFor="role">
           Role
           <br />
-          <input
-            type="text"
-            id="role"
-            name="role"
-            defaultValue={initialData.role}
-          />
+          <input type="text" id="role" name="role" defaultValue={color.role} />
         </label>
         <br />
         <label htmlFor="hex">
           Hex
           <br />
-          <ColorInput id="hex" defaultValue={initialData.hex} />
+          <ColorInput id="hex" defaultValue={color.hex} />
         </label>
         <br />
         <label htmlFor="contrastText">
           Contrast Text
           <br />
-          <ColorInput
-            id="contrastText"
-            defaultValue={initialData.contrastText}
-          />
+          <ColorInput id="contrastText" defaultValue={color.contrastText} />
         </label>
         <br />
-        <button>Add Color</button>
+        <button type="submit">{buttonText}</button>
+        {onCancel && (
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+        )}
       </form>
     </div>
   );

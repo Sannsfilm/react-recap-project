@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./Color.css";
+import ColorForm from "../ColorForm/ColorForm";
 
-export default function Color({ color, onDeleteColor }) {
+export default function Color({ color, onDeleteColor, onUpdateColor }) {
   const [isConfirming, setIsConfirming] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   function toggleDelete() {
     setIsConfirming(!isConfirming);
@@ -10,6 +12,15 @@ export default function Color({ color, onDeleteColor }) {
 
   function confirmDelete() {
     onDeleteColor(color.id);
+  }
+
+  function toggleIsEditing() {
+    setIsEditing(!isEditing);
+  }
+
+  function updateColor(newColor) {
+    onUpdateColor({ ...color, ...newColor });
+    toggleIsEditing();
   }
 
   return (
@@ -23,11 +34,12 @@ export default function Color({ color, onDeleteColor }) {
       <h3 className="color-card-highlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {/* if false */}
+      {/* if true */}
 
       {!isConfirming && <button onClick={toggleDelete}>DELETE</button>}
+      {!isEditing && <button onClick={toggleIsEditing}>EDIT</button>}
 
-      {/* if true */}
+      {/* if false */}
 
       {isConfirming && (
         <>
@@ -38,6 +50,17 @@ export default function Color({ color, onDeleteColor }) {
           <button className="color-question-name" onClick={confirmDelete}>
             DELETE
           </button>
+        </>
+      )}
+
+      {isEditing && (
+        <>
+          <ColorForm
+            color={color}
+            onSave={updateColor}
+            buttonText="UPDATE COLOR"
+          />
+          <button onClick={toggleIsEditing}>CANCEL</button>
         </>
       )}
     </div>
