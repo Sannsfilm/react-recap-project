@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
@@ -6,7 +6,10 @@ import ColorForm from "./Components/ColorForm/ColorForm.jsx";
 import "./App.css";
 
 export default function App() {
-  const [colors, setColors] = useState(initialColors);
+  // const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
 
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
@@ -29,7 +32,7 @@ export default function App() {
   return (
     <>
       <h1 className="app-container">Theme Creator ✨</h1>
-      <ColorForm onSubmitColor={handleAddColor} />
+      <ColorForm onSave={handleAddColor} />
       {colors.length === 0 ? (
         <p>No colors available. Please add new colors!</p>
       ) : (
