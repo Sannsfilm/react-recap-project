@@ -19,6 +19,13 @@ export default function App() {
     setColors(ColorsToKeep);
   }
 
+  function handleUpdateColor(updatedColor) {
+    const updatedColors = colors.map((color) =>
+      color.id === updatedColor.id ? updatedColor : color
+    );
+    setColors(updatedColors);
+  }
+
   return (
     <>
       <h1 className="app-container">Theme Creator ✨</h1>
@@ -31,6 +38,7 @@ export default function App() {
             key={color.id}
             color={color}
             onDeleteColor={handleDeleteColor}
+            onUpdateColor={handleUpdateColor}
           />
         ))
       )}
