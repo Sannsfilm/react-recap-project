@@ -20,7 +20,7 @@ const CopyToClipboard = ({ hexCode }) => {
 
       return () => clearTimeout(timeOut); // Cleanup function to clear timeout
     }
-  }, [copied]);
+  }, [copied]); //dependencies array, that remembering that useEffect would work only in copied state
 
   return (
     <div>
